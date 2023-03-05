@@ -1,40 +1,36 @@
-let stringLength = function (string, maxLenght) {
-    let stringLength = (string.length)
-    if (stringLength <= maxLenght) {
-        return true
-    }
+const stringLength = function (string, maxLenght) {
+  const length = (string.length);
+  if (length <= maxLenght) {
+    return true;
+  }
 
-    return false
-}
+  return false;
+};
 
 stringLength('привет', 6);
 
-let palindrome = function (string) {
-    let reverseString = string.split('').reverse().join('');
-    if (string === reverseString) {
-        return true
-    }
-    return false
-}
+const palindrome = function (string) {
+  const reverseString = string.split('').reverse().join('');
+  return string === reverseString;
+};
 
-palindrome('шалаш')
+palindrome('шалаш');
 
-let onlyNumber = function (number) {
-    let onlyNumber = (parseInt(number,10))
-    console.log(onlyNumber)
-    return
-}
+const onlyNumber = function (number) {
+  const Number = (parseInt(number,10));
+  return Number;
+};
 
-onlyNumber('56 корова')
+onlyNumber('56 корова');
 
 
-let veryScary = function (string,minLength,symbol) {
-    let actualPad = minLength - string.length;
-    if (actualPad <= 0) {
-        return string;
-    }
+const veryScary = function (string,minLength,symbol) {
+  const actualPad = minLength - string.length;
+  if (actualPad <= 0) {
+    return string;
+  }
 
-    return symbol.slice(0, actualPad % symbol.length) + symbol.repeat(actualPad / symbol.length) + string;
-}
+  return symbol.slice(0, actualPad % symbol.length) + symbol.repeat(actualPad / symbol.length) + string;
+};
 
-console.log(veryScary('q', 4 , 'we'))
+veryScary('q', 4 , 'we');
