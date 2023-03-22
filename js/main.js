@@ -62,39 +62,30 @@ const getRandomInteger = (a, b) => {
 };
 
 function getRandomId (min, max) {
-  const previousId = [];
+  let id = min;
 
-  return function () {
-    let currentId = getRandomInteger(min, max);
-    while (previousId.includes(currentId)) {
-      currentId = getRandomInteger(min, max);
+  return function() {
+    if (id <= max) {
+      return id++;
     }
-    previousId.push(currentId);
-    return currentId;
   };
 }
 function getRandomUrl (min, max) {
-  const previousUrl = [];
+  let url = min;
 
-  return function () {
-    let currentUrl = getRandomInteger(min, max);
-    while (previousUrl.includes(currentUrl)) {
-      currentUrl = getRandomInteger(min, max);
+  return function() {
+    if (url <= max) {
+      return url++;
     }
-    previousUrl.push(currentUrl);
-    return currentUrl;
   };
 }
 function getRandomCommentId (min, max) {
-  const previousId = [];
+  let CommentId = min;
 
-  return function () {
-    let currentId = getRandomInteger(min, max);
-    while (previousId.includes(currentId)) {
-      currentId = getRandomInteger(min, max);
+  return function() {
+    if (CommentId <= max) {
+      return CommentId++;
     }
-    previousId.push(currentId);
-    return currentId;
   };
 }
 
@@ -106,11 +97,30 @@ const randomCommentId = getRandomCommentId(1, 10000000);
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 function getRandomMessage () {
-  const quantity = getRandomArrayElement(1, 2);
+  const quantity = getRandomInteger(1, 2);
+  const comment = [];
   if (quantity === 1) {
-    return getRandomArrayElement(COMMENTS);
+    comment[0] = {
+      id: randomCommentId(),
+      avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
+      message: getRandomArrayElement(COMMENTS),
+      name: getRandomArrayElement(NAMES)
+    };
+    return comment;
   }else {
-    return `${getRandomArrayElement(COMMENTS) } ${ getRandomArrayElement(COMMENTS)}`;
+    comment[0] = {
+      id: randomCommentId(),
+      avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
+      message: getRandomArrayElement(COMMENTS),
+      name: getRandomArrayElement(NAMES)
+    };
+    comment[1] = {
+      id: randomCommentId(),
+      avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
+      message: getRandomArrayElement(COMMENTS),
+      name: getRandomArrayElement(NAMES)
+    };
+    return comment;
   }
 }
 
@@ -119,12 +129,8 @@ const descriptionPhoto = () => ({
   url: `photos/${randomUrl()}.jpg`,
   description: getRandomArrayElement(DESCRIPTION),
   likes: getRandomInteger(15, 200),
-  Comments: {
-    id: randomCommentId(),
-    avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
-    message: getRandomMessage(),
-    name: getRandomArrayElement(NAMES)
-  }
+  сomments: getRandomMessage(),
+
 });
 
 const photo = Array.from({length:25}, descriptionPhoto);
