@@ -127,4 +127,6 @@ const descriptionPhoto = () => ({
   }
 });
 
-descriptionPhoto();
+const photo = Array.from({length:25}, descriptionPhoto);
+
+console.log(photo);
